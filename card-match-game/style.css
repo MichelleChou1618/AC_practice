@@ -1,0 +1,130 @@
+#cards {
+  display: flex;
+  /*宣告cards為flex container: 可控制子元素card(皆為flex item)*/
+  flex-wrap: wrap;
+  /*調整 CSS 佈局：13 * 4 => 讓 flex item 們換行*/
+  width: 85%;
+  /* 新增：寬度和標頭一致 */
+  margin: 0 auto;
+  /* 新增：置中 */
+}
+
+.card {
+  /* 1) 設定每張card大小 */
+  flex: 7% 1 1;
+  /* 每個 item 分配容器寬度: flex-basis(分配寬度), flex-grow(分配剩餘空間), flex-shrink(空間不足如何收縮) => 平均分配容器空間 */
+  height: 8vw;
+  /* 每個 item 分配容器高度: 視窗大小的 8% => 依視窗的寬度等比例變化 */
+  border: 2px solid #e0e0e0;
+  /*3) 調整 CSS 佈局：13 * 4 */
+  margin: 2px;
+  /* 卡片邊距 */
+  box-sizing: border-box;
+  /* 設定 box-sizing*/
+  /* 2)調整每張card裡的內部元件 */
+  display: flex;
+  /*宣告card為flex container: 可控制子元素{花色, 數字}*/
+  flex-direction: column;
+  /*flex items排列順序從上到下，再從左到右*/
+  justify-content: space-around;
+  /*讓元素聚集在中間，且保持均分的間隔*/
+
+}
+
+/*調整花色圖片: 設定圖樣的大小，並讓它保持在卡牌中心*/
+.card img {
+  max-width: 30%;
+  align-self: center;
+}
+
+/*調整卡片數字: 設定大小與邊距*/
+.card p {
+  margin: 3px;
+  font-size: 10px;
+
+}
+
+/*第二個數字旋轉*/
+.card p:last-child {
+  transform: rotate(180deg);
+}
+
+/*加入牌背 CSS 樣式: 可以根據「卡片元素是否含有 .back 樣式」來判斷他是覆蓋狀態，還是翻開狀態*/
+.back {
+  background: url('https://assets-lighthouse.alphacamp.co/uploads/image/file/9222/ExportedContentImage_00.png');
+  background-size: cover;
+}
+
+/*改變卡片底色*/
+.paired {
+  background-color: #dae0e3;
+}
+
+/* 呼叫keyframes */
+.wrong {
+  animation-name: wrongAnimation;
+  animation-duration: 0.2s;
+  animation-iteration-count: 5;
+}
+
+/* 用 @keyframes 指定了一個叫 wrongAnimation 的動畫流程，在 keyframes 裡可以用 from 和 to 來指定動畫漸變起點/終點，這裡我們使用 to 來指定「當動畫發生時，該元素要逐漸加上黃色邊框」 */
+@keyframes wrongAnimation {
+  to {
+    border: 2px solid #ffd54f;
+  }
+}
+
+/* 調整header區 */
+#header {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 85%;
+}
+
+#header .title {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#header .title img {
+  max-width: 3em;
+}
+
+#header .title h2 {
+  padding-left: 0.5em;
+}
+
+#header .score {
+  margin: 0;
+  color: #6c90ac;
+}
+
+#header .tried {
+  margin-top: 0;
+}
+
+/** Game finished **/
+.completed {
+  position: absolute;
+  z-index: 999;
+  top: 33vh;
+  background-color: RGBA(232, 246, 254, 0.8);
+  width: 100vw;
+  padding: 50px 0;
+}
+
+.completed>p {
+  font-size: 1.5em;
+  color: black;
+  text-align: center;
+  margin: 0;
+}
+
+.completed>p:first-child {
+  font-size: 3em;
+  font-weight: 700;
+  color: #758d9a;
+}
